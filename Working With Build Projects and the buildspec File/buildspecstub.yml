@@ -1,0 +1,80 @@
+version: 0.2
+
+run-as: Linux-user-name
+
+env:
+  variables:
+    AWS_ACCESS_KEY: AKIAJF7BRFSDAW2FDCVR3
+    AWS_SECRET_ACCESS_KEY: ORjJns3At2mlh4o4tmo+zHzXqa1wdsS3er
+    AWS_DEFAULT_REGION: us-east-1
+    DB_PASSWORD: AWSStarz#1#2020
+  parameter-store:
+    key: "value"
+    key: "value"
+  git-credential-helper: yes
+
+proxy:
+    upload-artifacts: yes
+    logs: yes
+            
+phases:
+  install:
+    run-as: Linux-user-name
+    runtime-versions:
+      runtime: version
+      runtime: version
+    commands:
+      - command
+      - command
+    finally:
+      - command
+      - command
+  pre_build:
+    run-as: Linux-user-name
+    commands:
+      - command
+      - command
+    finally:
+      - command
+      - command
+  build:
+    run-as: Linux-user-name
+    commands:
+      - command
+      - command
+    finally:
+      - command
+      - command
+  post_build:
+    run-as: Linux-user-name
+    commands:
+      - command
+      - command
+    finally:
+      - command
+      - command
+artifacts:
+  files:
+    - location
+    - location
+  name: artifact-name
+  discard-paths: yes
+  base-directory: location
+  secondary-artifacts:
+    artifactIdentifier:
+      files:
+        - location
+        - location
+      name: secondary-artifact-name
+      discard-paths: yes
+      base-directory: location
+    artifactIdentifier:
+      files:
+        - location
+        - location
+      discard-paths: yes
+      base-directory: location
+cache:
+  paths:
+    - path
+    - path
