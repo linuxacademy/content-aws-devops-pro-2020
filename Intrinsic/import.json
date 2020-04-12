@@ -1,0 +1,33 @@
+Stack A:
+
+"Outputs" : {
+  "PublicSubnet" : {
+    "Description" : "The subnet ID to use for public web servers",
+    "Value" :  { "Ref" : "PublicSubnet" },
+    "Export" : { "Name" : {"Fn::Sub": "${AWS::StackName}-SubnetID" }}
+  },
+  "WebServerSecurityGroup" : {
+    "Description" : "The security group ID to use for public web servers",
+    "Value" :  { "Fn::GetAtt" : ["WebServerSecurityGroup", "GroupId"] },
+    "Export" : { "Name" : {"Fn::Sub": "${AWS::StackName}-SecurityGroupID" }}
+  }
+}
+
+Stack B:
+
+"Resources" : {
+  "WebServerInstance" : {
+    "Type" : "AWS::EC2::Instance",
+    "Properties" : {
+      "InstanceType" : "t2.micro",
+      "ImageId" : "ami-a1b23456",
+      "NetworkInterfaces" : [{
+        "GroupSet" : [{"Fn::ImportValue" : {"Fn::Sub" : "${NetworkStackNameParameter}-SecurityGroupID"}}],
+        "AssociatePublicIpAddress" : "true",
+        "DeviceIndex" : "0",
+        "DeleteOnTermination" : "true",
+        "SubnetId" : {"Fn::ImportValue" : {"Fn::Sub" : "${NetworkStackNameParameter}-SubnetID"}}
+      }]
+    }
+  }
+}
